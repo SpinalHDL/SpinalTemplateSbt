@@ -4,17 +4,7 @@ This repository is a base SBT project added to help non Scala/SBT native people 
 
 ## Basics, without any IDE
 
-You need to install :
-
-- Java JDK
-- SBT
-
-And do the following :
-
-- Clone or download this repository.
-- Open a terminal in the root of it and run "sbt run". At the first execution, the process could take some seconds
-
-Which give on a Debian distribution the following commands :
+You need to install Java JDK and SBT
 
 ```sh
 sudo apt-get install openjdk-7-jdk
@@ -23,14 +13,22 @@ echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.li
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
 sudo apt-get update
 sudo apt-get install sbt
+```
 
+Clone or download this repository.
+
+```sh
 git clone https://github.com/SpinalHDL/SpinalBaseProject.git
-cd SpinalBaseProject
+```
 
+Open a terminal in the root of it and run "sbt run". At the first execution, the process could take some seconds
+
+```sh
+cd SpinalBaseProject
 sbt run
 ```
 
-Normally, this command must generate output files MyTopLevel.vhd.
+Normally, this "sbt run" command must generate an output files named MyTopLevel.vhd.
 The top level spinal code is defined into src\main\scala\MyCode
 
 ## Basics, with Intellij IDEA and its scala plugin
