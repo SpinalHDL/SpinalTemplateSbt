@@ -58,7 +58,7 @@ You need to install :
 - Scala
 - SBT
 - Eclipse (tested with Mars.2 - 4.5.2)
-- [Sacla plugin](http://scala-ide.org/) (tested with 4.4.1)
+- [scala plugin](http://scala-ide.org/) (tested with 4.4.1)
 
 And do the following :
 
