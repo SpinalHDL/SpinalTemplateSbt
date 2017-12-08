@@ -35,20 +35,19 @@ The top level spinal code is defined into src\main\scala\MyCode
 
 You need to install :
 
-- Java JDK
-- Scala
+- Java JDK 8
 - SBT
-- Intellij IDEA 14.1.3 (the free Community Edition is nice)
-- Intellij IDEA Scala plugin
+- Intellij IDEA (the free Community Edition is good enough)
+- Intellij IDEA Scala plugin (when you run Intellij IDEA the first time, he will ask you about it)
 
 And do the following :
 
 - Clone or download this repository.
-- In Intellij IDEA, "import project" with the root of this repository, Import project from external model SBT, Check all box
+- In Intellij IDEA, "import project" with the root of this repository, Import project from external model SBT
 - In addition maybe you need to specify some path like JDK to Intellij
-- In the project (Intellij project GUI), right click on src/main/scala/MyCode/TopLeve.scala and select "Run MyTopLevel"
+- In the project (Intellij project GUI), right click on src/main/scala/MyCode/TopLevel.scala and select "Run MyTopLevel"
 
-Normally, this must generate output files MyTopLevel.vhd.
+Normally, this must generate an MyTopLevel.vhd output files.
 
 ## Basics, with Eclipse and its scala plugin
 
