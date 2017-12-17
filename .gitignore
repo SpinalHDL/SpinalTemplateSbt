@@ -35,3 +35,5 @@ bin/
 *.vcd
 !tester/src/test/resources/*.vhd
 
+
+*verilatorSim/
