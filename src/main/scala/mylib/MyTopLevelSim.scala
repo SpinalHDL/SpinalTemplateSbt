@@ -2,7 +2,7 @@ package mylib
 
 import spinal.core._
 import spinal.sim._
-import spinal.core.SimManagedApi._
+import spinal.core.sim._
 
 import scala.util.Random
 
@@ -13,24 +13,14 @@ object MyTopLevelSim {
     SimConfig(new MyTopLevel).withWave.doManagedSim{dut =>
 
       //Fork a process to generate the reset and the clock on the dut
-      fork{
-        dut.clockDomain.assertReset()
-        dut.clockDomain.fallingEdge()
-        sleep(10)
-        dut.clockDomain.disassertReset()
-        sleep(10)
-        while(true){
-          dut.clockDomain.clockToggle()
-          sleep(5)
-        }
-      }
+      dut.clockDomain.forkStimulus(period = 10)
 
 
+      var modelState = 0
       var idx = 0
       while(idx < 100){
         //Generate random values to drive the reference model and the dut
         val cond0, cond1 = Random.nextBoolean()
-        val oldState = dut.io.state.toInt
 
         //Drive the dut inputs
         dut.io.cond0 #= cond0
@@ -39,9 +29,11 @@ object MyTopLevelSim {
         //Wait a rising edge on the clock
         dut.clockDomain.waitRisingEdge()
 
-        //Calculate the reference model values
-        val modelState = if(cond0) (oldState + 1) & 0xFF else oldState
+        //Update the reference model values
         val modelFlag = modelState == 0 || cond1
+        if(cond0) {
+          modelState = (modelState + 1) & 0xFF
+        }
 
         //Check that the dut values match with the reference model ones
         assert(dut.io.state.toInt == modelState)

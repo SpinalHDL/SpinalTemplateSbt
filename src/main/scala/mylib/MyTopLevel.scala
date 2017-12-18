@@ -20,8 +20,6 @@ package mylib
 
 import spinal.core._
 import spinal.lib._
-import spinal.sim._
-import spinal.core.SimManagedApi._
 
 import scala.util.Random
 
