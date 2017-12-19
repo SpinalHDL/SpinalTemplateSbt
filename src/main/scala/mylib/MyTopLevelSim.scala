@@ -13,6 +13,8 @@ object MyTopLevelSim {
     SimConfig(new MyTopLevel).withWave.doManagedSim{dut =>
 
       //Fork a process to generate the reset and the clock on the dut
+      dut.clockDomain.disassertReset()  //Verilator sim fix, will be fixed in SpinalHDL 1.0.4
+      sleep(0)
       dut.clockDomain.forkStimulus(period = 10)
 
 
@@ -30,10 +32,10 @@ object MyTopLevelSim {
         dut.clockDomain.waitRisingEdge()
 
         //Update the reference model values
-        val modelFlag = modelState == 0 || cond1
         if(cond0) {
           modelState = (modelState + 1) & 0xFF
         }
+        val modelFlag = modelState == 0 || cond1
 
         //Check that the dut values match with the reference model ones
         assert(dut.io.state.toInt == modelState)
