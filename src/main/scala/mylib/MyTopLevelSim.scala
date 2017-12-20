@@ -13,8 +13,6 @@ object MyTopLevelSim {
     SimConfig(new MyTopLevel).withWave.doManagedSim{dut =>
 
       //Fork a process to generate the reset and the clock on the dut
-      dut.clockDomain.disassertReset()  //Verilator sim fix, will be fixed in SpinalHDL 1.0.4
-      sleep(0)
       dut.clockDomain.forkStimulus(period = 10)
 
 
