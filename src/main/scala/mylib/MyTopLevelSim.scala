@@ -11,10 +11,8 @@ import scala.util.Random
 object MyTopLevelSim {
   def main(args: Array[String]) {
     SimConfig(new MyTopLevel).withWave.doManagedSim{dut =>
-
       //Fork a process to generate the reset and the clock on the dut
       dut.clockDomain.forkStimulus(period = 10)
-
 
       var modelState = 0
       var idx = 0

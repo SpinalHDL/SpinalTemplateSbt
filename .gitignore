@@ -36,4 +36,5 @@ bin/
 !tester/src/test/resources/*.vhd
 
 
-*verilatorSim/
+simWorkspace/
+tmp/
