@@ -10,7 +10,7 @@ import scala.util.Random
 //MyTopLevel's testbench
 object MyTopLevelSim {
   def main(args: Array[String]) {
-    SimConfig(new MyTopLevel).withWave.doManagedSim{dut =>
+    SimConfig.withWave.doSim(new MyTopLevel){dut =>
       //Fork a process to generate the reset and the clock on the dut
       dut.clockDomain.forkStimulus(period = 10)
 
