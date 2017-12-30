@@ -17,25 +17,22 @@ object MyTopLevelSim {
       var modelState = 0
       var idx = 0
       while(idx < 100){
-        //Generate random values to drive the reference model and the dut
-        val cond0, cond1 = Random.nextBoolean()
-
-        //Drive the dut inputs
-        dut.io.cond0 #= cond0
-        dut.io.cond1 #= cond1
+        //Drive the dut inputs with random values
+        dut.io.cond0 #= Random.nextBoolean()
+        dut.io.cond1 #= Random.nextBoolean()
 
         //Wait a rising edge on the clock
         dut.clockDomain.waitRisingEdge()
 
-        //Update the reference model values
-        if(cond0) {
-          modelState = (modelState + 1) & 0xFF
-        }
-        val modelFlag = modelState == 0 || cond1
-
         //Check that the dut values match with the reference model ones
+        val modelFlag = modelState == 0 || dut.io.cond1.toBoolean
         assert(dut.io.state.toInt == modelState)
         assert(dut.io.flag.toBoolean == modelFlag)
+
+        //Update the reference model value
+        if(dut.io.cond0.toBoolean) {
+          modelState = (modelState + 1) & 0xFF
+        }
 
         idx += 1
       }
