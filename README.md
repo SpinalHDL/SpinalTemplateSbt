@@ -37,13 +37,13 @@ echo "DONE"
 Clone or download this repository.
 
 ```sh
-git clone https://github.com/SpinalHDL/SpinalBaseProject.git
+git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
 ```
 
 Open a terminal in the root of it and run "sbt run". At the first execution, the process could take some seconds
 
 ```sh
-cd SpinalBaseProject
+cd SpinalTemplateSbt
 
 //If you want to generate the Verilog of your design
 sbt "run-main mylib.MyTopLevelVerilog"
@@ -88,7 +88,7 @@ You need to install :
 And do the following :
 
 - Clone or download this repository.
-- Run ```sbt eclipse``` in the ```SpinalBaseProject``` directory.
+- Run ```sbt eclipse``` in the ```SpinalTemplateSbt``` directory.
 - Import the eclipse project from eclipse.
 - In the project (eclipse project GUI), right click on src/main/scala/mylib/MyTopLevel.scala, right click on MyTopLevelVerilog, and select run it
 
