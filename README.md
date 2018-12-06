@@ -2,13 +2,25 @@ Spinal Base Project
 ============
 This repository is a base SBT project added to help non Scala/SBT native people in their first steps.
 
-## Basics, without any IDE
+Just one important note, you need java 8 / jdk 8 (not 9-10-11).
 
-You need to install Java JDK and SBT
+On debian : 
 
 ```sh
-sudo apt-get install openjdk-8-jdk
+sudo add-apt-repository -y ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk -y
 
+#To set the default java
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
+
+## Basics, without any IDE
+
+You need to install SBT
+
+```sh
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
 sudo apt-get update
