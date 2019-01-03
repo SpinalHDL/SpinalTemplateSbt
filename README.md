@@ -58,13 +58,13 @@ Open a terminal in the root of it and run "sbt run". At the first execution, the
 cd SpinalTemplateSbt
 
 //If you want to generate the Verilog of your design
-sbt "run-main mylib.MyTopLevelVerilog"
+sbt "runMain mylib.MyTopLevelVerilog"
 
 //If you want to generate the VHDL of your design
-sbt "run-main mylib.MyTopLevelVhdl"
+sbt "runMain mylib.MyTopLevelVhdl"
 
 //If you want to run the scala written testbench
-sbt "run-main mylib.MyTopLevelSim"
+sbt "runMain mylib.MyTopLevelSim"
 ```
 
 The top level spinal code is defined into src\main\scala\mylib
