@@ -15,8 +15,7 @@ object MyTopLevelSim {
       dut.clockDomain.forkStimulus(period = 10)
 
       var modelState = 0
-      var idx = 0
-      while(idx < 100){
+      for(idx <- 0 to 99){
         //Drive the dut inputs with random values
         dut.io.cond0 #= Random.nextBoolean()
         dut.io.cond1 #= Random.nextBoolean()
@@ -33,8 +32,6 @@ object MyTopLevelSim {
         if(dut.io.cond0.toBoolean) {
           modelState = (modelState + 1) & 0xFF
         }
-
-        idx += 1
       }
     }
   }
