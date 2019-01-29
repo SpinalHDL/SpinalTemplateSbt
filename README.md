@@ -2,7 +2,7 @@ Spinal Base Project
 ============
 This repository is a base SBT project added to help non Scala/SBT native people in their first steps.
 
-Just one important note, you need java 8 / jdk 8 (not 9-10-11).
+Just one important note, you need a java JDK >= 8
 
 On debian : 
 
