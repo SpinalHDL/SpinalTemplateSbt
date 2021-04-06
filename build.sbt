@@ -10,4 +10,3 @@ libraryDependencies ++= Seq(
 )
 
 fork := true
-EclipseKeys.withSource := true
