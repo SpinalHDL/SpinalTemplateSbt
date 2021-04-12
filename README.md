@@ -89,6 +89,8 @@ Normally, this must generate an MyTopLevel.v output files.
 
 ## Basics, with Eclipse and its scala plugin
 
+First, i "strongly" suggest to use intellij idea instead.
+
 You need to install :
 
 - Java JDK
@@ -100,6 +102,7 @@ You need to install :
 And do the following :
 
 - Clone or download this repository.
+- Revert changes from https://github.com/SpinalHDL/SpinalTemplateSbt/commit/173bbb9bb8cbf70087339104f6ebced9321908dd
 - Run ```sbt eclipse``` in the ```SpinalTemplateSbt``` directory.
 - Import the eclipse project from eclipse.
 - In the project (eclipse project GUI), right click on src/main/scala/mylib/MyTopLevel.scala, right click on MyTopLevelVerilog, and select run it
