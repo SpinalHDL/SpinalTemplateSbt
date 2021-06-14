@@ -1,12 +1,16 @@
-name := "SpinalTemplateSbt"
-version := "1.0"
-scalaVersion := "2.12.14"
-val spinalVersion = "1.4.3"
+ThisBuild / version := "1.0"
+ThisBuild / scalaVersion := "2.12.14"
+ThisBuild / organization := "org.example"
 
-libraryDependencies ++= Seq(
-  "com.github.spinalhdl" %% "spinalhdl-core" % spinalVersion,
-  "com.github.spinalhdl" %% "spinalhdl-lib" % spinalVersion,
-  compilerPlugin("com.github.spinalhdl" %% "spinalhdl-idsl-plugin" % spinalVersion)
-)
+val spinalVersion = "1.4.3"
+val spinalCore = "com.github.spinalhdl" %% "spinalhdl-core" % spinalVersion
+val spinalLib = "com.github.spinalhdl" %% "spinalhdl-lib" % spinalVersion
+val spinalIdslPlugin = compilerPlugin("com.github.spinalhdl" %% "spinalhdl-idsl-plugin" % spinalVersion)
+
+lazy val mylib = (project in file("."))
+  .settings(
+    name := "SpinalTemplateSbt",
+    libraryDependencies ++= Seq(spinalCore, spinalLib, spinalIdslPlugin)
+  )
 
 fork := true
