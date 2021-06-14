@@ -4,7 +4,7 @@ This repository is a base SBT project added to help non Scala/SBT native people 
 
 Just one important note, you need a java JDK >= 8
 
-On debian : 
+On debian :
 
 ```sh
 sudo add-apt-repository -y ppa:openjdk-r/ppa
@@ -109,3 +109,31 @@ And do the following :
 
 Normally, this must generate output file ```MyTopLevel.v```.
 
+## Mill Support (Experimental)
+
+This Spinal Base Project contains support for the [Mill build tool](https://com-lihaoyi.github.io/mill).
+
+The prerequisites are the same as for using SBT, except for sbt itself. Additionally, the ```mill``` executable needs to be installed on the path. Download it to ```/usr/local/bin/mill``` or ```~/bin/mill``` according to the [installation instructions](https://com-lihaoyi.github.io/mill/mill/Intro_to_Mill.html#_installation).
+
+You can clone and use this repository in the following way.
+
+```sh
+git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
+```
+
+Open a terminal in the root of it and execute your favorite mill command. At the first execution, the process could take some seconds
+
+```sh
+cd SpinalTemplateSbt
+
+//If you want to generate the Verilog of your design
+mill mylib.runMain mylib.MyTopLevelVerilog
+
+//If you want to generate the VHDL of your design
+mill mylib.runMain mylib.MyTopLevelVhdl
+
+//If you want to run the scala written testbench
+mill mylib.runMain mylib.MyTopLevelSim
+```
+
+The top level spinal code is defined into src\main\scala\mylib

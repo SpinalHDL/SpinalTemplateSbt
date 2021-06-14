@@ -20,6 +20,9 @@ project/plugins/project/
 .idea
 out
 
+# Metals
+.metals
+
 # Eclipse
 bin/
 .classpath
