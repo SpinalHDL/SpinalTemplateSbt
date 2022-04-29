@@ -3,7 +3,8 @@ package mylib
 import spinal.core._
 import spinal.core.formal._
 
-//MyTopLevel's testbench
+// You need SymbiYosys to be installed.
+// See https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Formal%20verification/index.html#installing-requirements
 object MyTopLevelFormal {
   def main(args: Array[String]) {
     FormalConfig.withBMC(10).doVerify(new Component {
