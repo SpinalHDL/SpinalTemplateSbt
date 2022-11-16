@@ -11,17 +11,20 @@ target
 lib_managed/
 src_managed/
 project/boot/
+project/project
 project/plugins/project/
 
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
+.bloop
 
 .idea
 out
 
 # Metals
 .metals
+project/metals.sbt
 
 # Eclipse
 bin/
