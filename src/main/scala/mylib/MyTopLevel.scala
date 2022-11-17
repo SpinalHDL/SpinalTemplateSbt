@@ -3,7 +3,7 @@ package mylib
 import spinal.core._
 
 // Hardware definition
-class MyTopLevel extends Component {
+case class MyTopLevel() extends Component {
   val io = new Bundle {
     val cond0 = in  Bool()
     val cond1 = in  Bool()
