@@ -9,7 +9,7 @@ object MyTopLevelFormal extends App {
   FormalConfig
     .withBMC(10)
     .doVerify(new Component {
-      val dut = FormalDut(new MyTopLevel)
+      val dut = FormalDut(MyTopLevel())
 
       // Ensure the formal test start with a reset
       assumeInitial(clockDomain.isResetActive)

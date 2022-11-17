@@ -4,12 +4,12 @@ import spinal.core._
 
 object MyTopLevelVerilog extends App {
   // Generate the MyTopLevel's Verilog
-  SpinalVerilog(new MyTopLevel)
+  SpinalVerilog(MyTopLevel())
 }
 
 object MyTopLevelVhdl extends App {
   // Generate the MyTopLevel's VHDL
-  SpinalVhdl(new MyTopLevel)
+  SpinalVhdl(MyTopLevel())
 }
 
 // Custom SpinalHDL configuration with synchronous reset instead of the default asynchronous one
@@ -21,5 +21,5 @@ object MySpinalConfig
 
 object MyTopLevelVerilogWithCustomConfig extends App {
   // Generate the MyTopLevel's Verilog using the above custom configuration.
-  MySpinalConfig.generateVerilog(new MyTopLevel)
+  MySpinalConfig.generateVerilog(MyTopLevel())
 }
