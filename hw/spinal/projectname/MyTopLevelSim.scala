@@ -1,10 +1,10 @@
-package mylib
+package projectname
 
 import spinal.core._
 import spinal.core.sim._
 
 object MyTopLevelSim extends App {
-  SimConfig.withWave.doSim(MyTopLevel()) { dut =>
+  Config.sim.compile(MyTopLevel()).doSim { dut =>
     // Fork a process to generate the reset and the clock on the dut
     dut.clockDomain.forkStimulus(period = 10)
 

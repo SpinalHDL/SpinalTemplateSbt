@@ -1,4 +1,4 @@
-package mylib
+package projectname
 
 import spinal.core._
 
@@ -19,4 +19,12 @@ case class MyTopLevel() extends Component {
 
   io.state := counter
   io.flag := (counter === 0) | io.cond1
+}
+
+object MyTopLevelVerilog extends App {
+  Config.spinal.generateVerilog(MyTopLevel())
+}
+
+object MyTopLevelVhdl extends App {
+  Config.spinal.generateVhdl(MyTopLevel())
 }
