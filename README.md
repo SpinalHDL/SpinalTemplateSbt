@@ -37,7 +37,7 @@ unsetenv VERILATOR_ROOT  # For csh; ignore error if on bash
 unset VERILATOR_ROOT  # For bash
 cd verilator
 git pull        # Make sure we're up-to-date
-git checkout v4.040
+git checkout v4.216
 autoconf        # Create ./configure script
 ./configure
 make -j$(nproc)
@@ -59,13 +59,13 @@ Open a terminal in the root of it and run "sbt run". At the first execution, the
 cd SpinalTemplateSbt
 
 //If you want to generate the Verilog of your design
-sbt "runMain mylib.MyTopLevelVerilog"
+sbt "runMain projectname.MyTopLevelVerilog"
 
 //If you want to generate the VHDL of your design
-sbt "runMain mylib.MyTopLevelVhdl"
+sbt "runMain projectname.MyTopLevelVhdl"
 
 //If you want to run the scala written testbench
-sbt "runMain mylib.MyTopLevelSim"
+sbt "runMain projectname.MyTopLevelSim"
 ```
 
 The top level spinal code is defined into src\main\scala\mylib
@@ -128,13 +128,13 @@ Open a terminal in the root of it and execute your favorite mill command. At the
 cd SpinalTemplateSbt
 
 //If you want to generate the Verilog of your design
-mill mylib.runMain mylib.MyTopLevelVerilog
+mill projectname.runMain projectname.MyTopLevelVerilog
 
 //If you want to generate the VHDL of your design
-mill mylib.runMain mylib.MyTopLevelVhdl
+mill projectname.runMain projectname.MyTopLevelVhdl
 
 //If you want to run the scala written testbench
-mill mylib.runMain mylib.MyTopLevelSim
+mill projectname.runMain projectname.MyTopLevelSim
 ```
 
 The top level spinal code is defined into src\main\scala\mylib
