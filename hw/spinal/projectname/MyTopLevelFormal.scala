@@ -1,4 +1,4 @@
-package mylib
+package projectname
 
 import spinal.core._
 import spinal.core.formal._
