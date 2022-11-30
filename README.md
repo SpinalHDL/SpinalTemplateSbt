@@ -1,140 +1,83 @@
-Spinal Base Project
-============
-This repository is a base SBT project added to help non Scala/SBT native people in their first steps.
+# SpinalHDL Base Project
 
-Just one important note, you need a java JDK >= 8
+This repository is a base project to help Spinal users set-up project without knowledge about Scala and SBT.
 
-On debian :
 
-```sh
-sudo add-apt-repository -y ppa:openjdk-r/ppa
-sudo apt-get update
-sudo apt-get install openjdk-8-jdk -y
+## If it is your are learning SpinalHDL
 
-#To set the default java
-sudo update-alternatives --config java
-sudo update-alternatives --config javac
-```
+You can follow the tutorial on the [Getting Started](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/index.html) page.
 
-## Basics, without any IDE
+More specifically:
 
-You need to install SBT
+* instructions to install tools can be found on the [Install and setup](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/Install%20and%20setup.html#install-and-setup) page
+* instructions to get this repository locally are available in the [Create a SpinalHDL project](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/Install%20and%20setup.html#create-a-spinalhdl-project) section.
+
+
+### TL;DR Things have arleady been set up in my environment, how do I run things to try SpinalHDL?
+
+Once in the `SpinalTemplateSbt` directory, when tools are installed, the commands below can be run to use `sbt`.
 
 ```sh
-echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
-echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list
-curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
-sudo apt-get update
-sudo apt-get install sbt
-```
-
-If you want to run the scala written testbench, you have to be on linux and have Verilator installed (a recent version) :
-
-```sh
-sudo apt-get install git make autoconf g++ flex bison -y  # First time prerequisites
-git clone http://git.veripool.org/git/verilator   # Only first time
-unsetenv VERILATOR_ROOT  # For csh; ignore error if on bash
-unset VERILATOR_ROOT  # For bash
-cd verilator
-git pull        # Make sure we're up-to-date
-git checkout v4.216
-autoconf        # Create ./configure script
-./configure
-make -j$(nproc)
-sudo make install
-cd ..
-echo "DONE"
-
-```
-
-Clone or download this repository.
-
-```sh
-git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
-```
-
-Open a terminal in the root of it and run "sbt run". At the first execution, the process could take some seconds
-
-```sh
-cd SpinalTemplateSbt
-
-//If you want to generate the Verilog of your design
+// To generate the Verilog from the example
 sbt "runMain projectname.MyTopLevelVerilog"
 
-//If you want to generate the VHDL of your design
+// To generate the VHDL from the example
 sbt "runMain projectname.MyTopLevelVhdl"
 
-//If you want to run the scala written testbench
+// To run the testbench
 sbt "runMain projectname.MyTopLevelSim"
 ```
 
-The top level spinal code is defined into src\main\scala\mylib
+* The example hardware description is into `hw/spinal/projectname/MyTopLevel.scala`
+* The testbench is into `hw/spinal/projectname/MyTopLevelSim.scala`
 
-## Basics, with Intellij IDEA and its scala plugin
+When you really start working with SpinalHDL, it is recommended (both for comfort and efficiency) to use an IDE, see the [Getting started](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/index.html).
 
-You need to install :
 
-- Java JDK 8
-- SBT
-- Intellij IDEA (the free Community Edition is good enough)
-- Intellij IDEA Scala plugin (when you run Intellij IDEA the first time, he will ask you about it)
+## If you want to create a new project from this template
 
-And do the following :
+### Change project name
 
-- Clone or download this repository.
-- In Intellij IDEA, "import project" with the root of this repository, Import project from external model SBT
-- In addition maybe you need to specify some path like JDK to Intellij
-- In the project (Intellij project GUI), go in src/main/scala/mylib/MyTopLevel.scala, right click on MyTopLevelVerilog, "Run MyTopLevelVerilog"
+You might want to change the project name, which is currently `projectname`. To do so (let's say your actual project name is `myproject`; it must be all lowercase with no separators):
 
-Normally, this must generate an MyTopLevel.v output files.
+* Update `build.sbt` and/or `build.sc` by replacing `projectname` by the name of your project `myproject` (1 occurrence in each file). The better is to replace in both (it will always work), but in some contexts you can keep only one of these two files:
+    * If you are sure all people only use `sbt`, you can replace only in `build.sbt` and remove `build.sc`
+    * If you are sure all people only use `mill`, you can replace only in `build.sc` and remove `build.sbt`
+    * Replace in both files for open-source project.
+* Put all your scala files into `hw/spinal/myproject/` (remove the unused `hw/spinal/projectname/` folder)
+* Start all your scala files with `package myproject`
 
-## Basics, with Eclipse and its scala plugin
 
-First, i "strongly" suggest to use intellij idea instead.
+### Change project structure
 
-You need to install :
+You can change the project structure as you want. The only restrictions (from Scala environment) are (let's say your actual project name is `myproject`):
 
-- Java JDK
-- Scala
-- SBT
-- Eclipse (tested with Mars.2 - 4.5.2)
-- [scala plugin](http://scala-ide.org/) (tested with 4.4.1)
+* you must have a `myproject` folder and files in it must start with `package myproject`
+* if you have a file in a subfolder `myproject/somepackage/MyElement.scala` it must start with `package myproject.somepackage`.
+* `sbt` and `mill` must be run right in the folder containing their configurations (recommended to not move these files)
 
-And do the following :
+Once the project structure is modified, update configurations:
 
-- Clone or download this repository.
-- Revert changes from https://github.com/SpinalHDL/SpinalTemplateSbt/commit/173bbb9bb8cbf70087339104f6ebced9321908dd
-- Run ```sbt eclipse``` in the ```SpinalTemplateSbt``` directory.
-- Import the eclipse project from eclipse.
-- In the project (eclipse project GUI), right click on src/main/scala/mylib/MyTopLevel.scala, right click on MyTopLevelVerilog, and select run it
+* In `build.sbt` and/or `build.sc` (see above) replace `/ "hw" / "spinal"` by the new path to the folder containing the `myproject` folder.
+* In the spinal configuration file (if you kept it, by default it is in `projectname/Config.scala`) change the path in `targetDirectory = "hw/gen"` to the directory where you want generated files to be written. If you don't use a config or if it doesn't contain this element, generated files will be written in the root directory.
 
-Normally, this must generate output file ```MyTopLevel.v```.
+
+### Update this README
+
+Of course you can replace/modify this file to help people with your own project!
+
 
 ## Mill Support (Experimental)
 
-This Spinal Base Project contains support for the [Mill build tool](https://com-lihaoyi.github.io/mill).
-
-The prerequisites are the same as for using SBT, except for sbt itself. Additionally, the ```mill``` executable needs to be installed on the path. Download it to ```/usr/local/bin/mill``` or ```~/bin/mill``` according to the [installation instructions](https://com-lihaoyi.github.io/mill/mill/Intro_to_Mill.html#_installation).
-
-You can clone and use this repository in the following way.
+The [Mill build tool](https://com-lihaoyi.github.io/mill) can be installed and used instead of `sbt`.
 
 ```sh
-git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
-```
-
-Open a terminal in the root of it and execute your favorite mill command. At the first execution, the process could take some seconds
-
-```sh
-cd SpinalTemplateSbt
-
-//If you want to generate the Verilog of your design
+// To generate the Verilog from the example
 mill projectname.runMain projectname.MyTopLevelVerilog
 
-//If you want to generate the VHDL of your design
+// To generate the VHDL from the example
 mill projectname.runMain projectname.MyTopLevelVhdl
 
-//If you want to run the scala written testbench
+// To run the testbench
 mill projectname.runMain projectname.MyTopLevelSim
 ```
-
-The top level spinal code is defined into src\main\scala\mylib
