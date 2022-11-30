@@ -62,6 +62,11 @@ Once the project structure is modified, update configurations:
 * In the spinal configuration file (if you kept it, by default it is in `projectname/Config.scala`) change the path in `targetDirectory = "hw/gen"` to the directory where you want generated files to be written. If you don't use a config or if it doesn't contain this element, generated files will be written in the root directory.
 
 
+### Update this README
+
+Of course you can replace/modify this file to help people with your own project!
+
+
 ## Mill Support (Experimental)
 
 The [Mill build tool](https://com-lihaoyi.github.io/mill) can be installed and used instead of `sbt`.
