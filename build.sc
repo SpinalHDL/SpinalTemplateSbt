@@ -1,6 +1,6 @@
 import mill._, scalalib._
 
-val spinalVersion = "1.7.3"
+val spinalVersion = "1.8.0"
 
 object projectname extends SbtModule {
   def scalaVersion = "2.12.16"
