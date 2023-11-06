@@ -13,7 +13,7 @@ More specifically:
 * instructions to get this repository locally are available in the [Create a SpinalHDL project](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/Install%20and%20setup.html#create-a-spinalhdl-project) section.
 
 
-### TL;DR Things have arleady been set up in my environment, how do I run things to try SpinalHDL?
+### TL;DR Things have already been set up in my environment, how do I run things to try SpinalHDL?
 
 Once in the `SpinalTemplateSbt` directory, when tools are installed, the commands below can be run to use `sbt`.
 
