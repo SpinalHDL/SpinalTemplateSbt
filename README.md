@@ -28,8 +28,8 @@ sbt "runMain projectname.MyTopLevelVhdl"
 sbt "runMain projectname.MyTopLevelSim"
 ```
 
-* The example hardware description is into `hw/spinal/projectname/MyTopLevel.scala`
-* The testbench is into `hw/spinal/projectname/MyTopLevelSim.scala`
+* The example hardware description is in `src/main/scala/projectname/MyTopLevel.scala`
+* The testbench is in `src/main/scala/spinal/projectname/MyTopLevelSim.scala`
 
 When you really start working with SpinalHDL, it is recommended (both for comfort and efficiency) to use an IDE, see the [Getting started](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/index.html).
 
@@ -38,34 +38,32 @@ When you really start working with SpinalHDL, it is recommended (both for comfor
 
 ### Change project name
 
-You might want to change the project name, which is currently `projectname`. To do so (let's say your actual project name is `myproject`; it must be all lowercase with no separators):
+You might want to change the project name, which is currently `projectname`. To do so (let's say your actual project name is `myproject`):
 
-* Update `build.sbt` and/or `build.sc` by replacing `projectname` by the name of your project `myproject` (1 occurrence in each file). The better is to replace in both (it will always work), but in some contexts you can keep only one of these two files:
+* Update `build.sbt` and/or `build.sc` by replacing `projectname` by the name of your project `myproject`. The better is to replace in both (it will always work), but in some contexts you can keep only one of these two files:
     * If you are sure all people only use `sbt`, you can replace only in `build.sbt` and remove `build.sc`
     * If you are sure all people only use `mill`, you can replace only in `build.sc` and remove `build.sbt`
     * Replace in both files for open-source project.
-* Put all your scala files into `hw/spinal/myproject/` (remove the unused `hw/spinal/projectname/` folder)
-* Start all your scala files with `package myproject`
+* Rename the `src/main/scala/spinal/projectname` folder to `src/main/scala/spinal/myproject`
+* Replace `package projectname` all scala files with `package myproject`
 
-
-### Change project structure
-
-You can change the project structure as you want. The only restrictions (from Scala environment) are (let's say your actual project name is `myproject`):
-
-* you must have a `myproject` folder and files in it must start with `package myproject`
-* if you have a file in a subfolder `myproject/somepackage/MyElement.scala` it must start with `package myproject.somepackage`.
-* `sbt` and `mill` must be run right in the folder containing their configurations (recommended to not move these files)
-
-Once the project structure is modified, update configurations:
-
-* In `build.sbt` and/or `build.sc` (see above) replace `/ "hw" / "spinal"` by the new path to the folder containing the `myproject` folder.
-* In the spinal configuration file (if you kept it, by default it is in `projectname/Config.scala`) change the path in `targetDirectory = "hw/gen"` to the directory where you want generated files to be written. If you don't use a config or if it doesn't contain this element, generated files will be written in the root directory.
-
+If you want/need separators in the project name then a `.` can be used as a separator, but the folder structure/build files need to be adapted accordingly.
+You'll need to follow the rules for Java package names / structure.
 
 ### Update this README
 
 Of course you can replace/modify this file to help people with your own project!
 
+### Reinitialize repository
+
+There is no need to keep the git history of the template. The easiest is to remove the `.git` folder and initialize a clean repository:
+
+```sh
+rm -rf .git
+git init
+git add .
+git commit -m "Initial project setup"
+```
 
 ## Mill Support (Experimental)
 
