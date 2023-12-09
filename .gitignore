@@ -14,7 +14,7 @@ project/boot/
 project/project
 project/plugins/project/
 
-# Scala-IDE specific
+# IntelliJ specific
 .scala_dependencies
 .worksheet
 .bloop
@@ -22,8 +22,10 @@ project/plugins/project/
 .idea
 out
 
-# Metals
+# VSCode / Metals
+.vscode
 .metals
+.bsp
 project/metals.sbt
 
 # Eclipse
@@ -41,7 +43,7 @@ bin/
 *.vcd
 !tester/src/test/resources/*.vhd
 
-
+gen/
 simWorkspace/
 tmp/
 null

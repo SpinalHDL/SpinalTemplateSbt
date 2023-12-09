@@ -5,7 +5,7 @@ import spinal.core.sim._
 
 object Config {
   def spinal = SpinalConfig(
-    targetDirectory = "hw/gen",
+    targetDirectory = "gen",
     defaultConfigForClockDomains = ClockDomainConfig(
       resetActiveLevel = HIGH
     ),
