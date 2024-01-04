@@ -1,9 +1,9 @@
 import mill._, scalalib._
 
-val spinalVersion = "1.9.0"
+val spinalVersion = "1.10.0"
 
 object projectname extends SbtModule {
-  def scalaVersion = "2.12.16"
+  def scalaVersion = "2.12.18"
   override def millSourcePath = os.pwd
   def sources = T.sources(
     millSourcePath / "hw" / "spinal"
