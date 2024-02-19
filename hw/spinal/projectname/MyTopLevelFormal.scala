@@ -6,7 +6,7 @@ import spinal.core.formal._
 // You need SymbiYosys to be installed.
 // See https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Formal%20verification/index.html#installing-requirements
 object MyTopLevelFormal extends App {
-  FormalConfig
+  SpinalFormalConfig( _hasAsync = true )
     .withBMC(10)
     .doVerify(new Component {
       val dut = FormalDut(MyTopLevel())
