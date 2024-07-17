@@ -1,8 +1,11 @@
 ThisBuild / version := "1.0"
-ThisBuild / scalaVersion := "2.12.18"
 ThisBuild / organization := "org.example"
 
-val spinalVersion = "1.10.2a"
+import com.typesafe.config._
+val conf = ConfigFactory.parseFile(new File("version.conf")).resolve()
+ThisBuild / scalaVersion := conf.getString("scalaVersion")
+val spinalVersion = conf.getString("spinalVersion")
+
 val spinalCore = "com.github.spinalhdl" %% "spinalhdl-core" % spinalVersion
 val spinalLib = "com.github.spinalhdl" %% "spinalhdl-lib" % spinalVersion
 val spinalIdslPlugin = compilerPlugin("com.github.spinalhdl" %% "spinalhdl-idsl-plugin" % spinalVersion)
