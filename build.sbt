@@ -1,5 +1,5 @@
 ThisBuild / version := "1.0"
-ThisBuild / scalaVersion := "2.12.18"
+ThisBuild / scalaVersion := "2.13.14"
 ThisBuild / organization := "org.example"
 
 val spinalVersion = "1.10.2a"
