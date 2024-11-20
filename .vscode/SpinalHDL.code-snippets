@@ -1,0 +1,190 @@
+{
+	"Import spinal.core": {
+		"scope": "scala",
+		"prefix": "importcore",
+		"body": ["import spinal.core._", ""]
+	},
+
+	"Import spinal.lib": {
+		"scope": "scala",
+		"prefix": "importlib",
+		"body": ["import spinal.lib.${1:_}", ""]
+	},
+
+	"Import spinal.core.sim": {
+		"scope": "scala",
+		"prefix": "importsim",
+		"body": ["import spinal.core.sim._", ""]
+	},
+
+	"New component": {
+		"scope": "scala",
+		"prefix": "component",
+		"body": [
+			"case class $1($2) extends Component {",
+			"  val io = new Bundle {",
+			"    $0",
+			"  }",
+			"",
+			"  ",
+			"}"
+		],
+	},
+
+	"Component to function": {
+		"scope": "scala",
+		"prefix": "fncomp",
+		"body": [
+			"object ${1/\\(.*//} {",
+			"  def apply($2: $3): $4 = {",
+			"    val ${1/([^(]*).*/${1:/camelcase}/} = $1($6)",
+			"    ${1/([^(]*).*/${1:/camelcase}/}.io.$2 := $2",
+			"    ${1/([^(]*).*/${1:/camelcase}/}.io.$5",
+			"  }",
+			"}"
+		],
+	},
+
+	"Component to function2": {
+		"scope": "scala",
+		"prefix": "fncomp2",
+		"body": [
+			"object ${1/\\(.*//} {",
+			"  def apply($2: $3, $4: $5): $6 = {",
+			"    val ${1/([^(]*).*/${1:/camelcase}/} = $1($8)",
+			"    ${1/([^(]*).*/${1:/camelcase}/}.io.$2 := $2",
+			"    ${1/([^(]*).*/${1:/camelcase}/}.io.$4 := $4",
+			"    ${1/([^(]*).*/${1:/camelcase}/}.io.$7",
+			"  }",
+			"}"
+		],
+	},
+
+	"New configurable component": {
+		"scope": "scala",
+		"prefix": "compcfg",
+		"body": [
+			"case class ${2:${1}Cfg} (",
+			"  $3",
+			")",
+			"",
+			"class $1(cfg: $2) extends Component {",
+			"  val io = new Bundle {",
+			"    $0",
+			"  }",
+			"",
+			"  ",
+			"}"
+		],
+	},
+
+	"New entity/architecture-like": {
+		"scope": "scala",
+		"prefix": "entarch",
+		"body": [
+			"abstract class $1$2 extends Component {",
+			"  val io = new Bundle {",
+			"    $0",
+			"  }",
+			"}",
+			"",
+			"class $1$3 extends $1$4 {",
+			"  ",
+			"}",
+		],
+	},
+
+	"New input": {
+		"scope": "scala",
+		"prefix": "pin",
+		"body": "val $1 = in port ",
+	},
+
+	"New output": {
+		"scope": "scala",
+		"prefix": "pout",
+		"body": "val $1 = out port ",
+	},
+
+	"New master port": {
+		"scope": "scala",
+		"prefix": "pmaster",
+		"body": "val $1 = master port ",
+	},
+
+	"New slave port": {
+		"scope": "scala",
+		"prefix": "pslave",
+		"body": "val $1 = slave port ",
+	},
+
+	"Bits": {
+		"scope": "scala",
+		"prefix": "nbits",
+		"body": "Bits($1 bits)",
+	},
+
+	"UInt": {
+		"scope": "scala",
+		"prefix": "nuint",
+		"body": "UInt($1 bits)",
+	},
+
+	"SInt": {
+		"scope": "scala",
+		"prefix": "nsint",
+		"body": "SInt($1 bits)",
+	},
+
+	"...ing flag": {
+		"scope": "scala",
+		"prefix": "doing",
+		"body": ["val ${2:${1}ing} = False", "def $1(): Unit = $2 := True", ""]
+	},
+
+	"...Flag flag": {
+		"scope": "scala",
+		"prefix": "flag",
+		"body": ["val ${2:${1}Flag} = False", "def $1(): Unit = $2 := True", ""]
+	},
+
+	"'def' function mux": {
+		"scope": "scala",
+		"prefix": "fnmux",
+		"body": ["$1 := $2", "def $3(): Unit = $1 := $0"]
+	},
+
+	"BlackBox wrapper": {
+		"scope": "scala",
+		"prefix": "blackboxwrapper",
+		"body": [
+			"class $1 extends Area {",
+			"  val io = new Bundle {",
+			"    ${0:// Direction-less Spinal ports}",
+			"  }",
+			"",
+			"  class $1 extends BlackBox {",
+			"    // Ports of the blackboxed item",
+			"  }",
+			"",
+			"  val bb = new $1",
+			"  bb.setPartialName(\"\")",
+			"",
+			"  // Connection logic",
+			"}"
+		]
+	},
+
+	"State machine": {
+		"scope": "scala",
+		"prefix": "fsm",
+		"body": [
+			"val $1 = new StateMachine {",
+			"  val $2, $3 = new State",
+			"  setEntry($2)",
+			"",
+			"  $0",
+			"}"
+		]
+	}
+}
