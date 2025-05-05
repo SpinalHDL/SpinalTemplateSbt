@@ -11,6 +11,7 @@ lazy val projectname = (project in file("."))
   .settings(
     name := "myproject", 
     Compile / scalaSource := baseDirectory.value / "hw" / "spinal",
+    Test / scalaSource := baseDirectory.value / "tb" / "spinal",
     libraryDependencies ++= Seq(spinalCore, spinalLib, spinalIdslPlugin)
   )
 
